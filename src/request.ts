@@ -52,7 +52,6 @@ export abstract class VersionSource {
     return factory(value)
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private static readers: Record<string, (value: string) => VersionSource> = {
     env: (variable: string) => new EnvVersionSource(variable),
     label: (label: string) => new LabelVersionSource(label),
