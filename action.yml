@@ -36,5 +36,5 @@ outputs:
   candidate-version:
     description: The detected version of the candidate tag
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
