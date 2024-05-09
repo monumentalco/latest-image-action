@@ -4950,7 +4950,12 @@ async function fetchImpl(session, input, init = {}, extra) {
                     }));
                 }
                 else {
-                    resolve(session.newFetch(request.clone(locationUrl), init, {
+                    // Remove auth from request. If the host is not the same as
+                    // the original request, we should not use the same auth.
+                    const newRequest = request.clone(locationUrl);
+                    newRequest.headers.delete("Authorization");
+                    newRequest.credentials = "omit";
+                    resolve(session.newFetch(newRequest, init, {
                         timeoutAt,
                         redirected: redirected.concat(url),
                     }));
@@ -4982,6 +4987,7 @@ function fetch(session, input, init, extra) {
 }
 exports.fetch = fetch;
 //# sourceMappingURL=fetch-http1.js.map
+
 
 /***/ }),
 
