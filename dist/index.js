@@ -4954,7 +4954,6 @@ async function fetchImpl(session, input, init = {}, extra) {
                     // the original request, we should not use the same auth.
                     const newRequest = request.clone(locationUrl);
                     newRequest.headers.delete("Authorization");
-                    newRequest.credentials = "omit";
                     resolve(session.newFetch(newRequest, init, {
                         timeoutAt,
                         redirected: redirected.concat(url),
